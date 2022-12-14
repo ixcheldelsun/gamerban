@@ -6,7 +6,7 @@ services:
     build: .
     volumes:
       - ./app/:/usr/src/app/
-    env_file: .env
+    env_file: ./app/.env
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - 8009:8000
