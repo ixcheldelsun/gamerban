@@ -1,0 +1,9 @@
+# Django
+Django==4.1.4
+
+# Rest Framewrok
+djangorestframework==3.14.0
+
+# Swagger dependency
+drf-yasg==1.21.4
+

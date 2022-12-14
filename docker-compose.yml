@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  gamerban: &django
+    restart: always
+    build: .
+    volumes:
+      - ./app/:/usr/src/app/
+    env_file: .env
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8009:8000
+    
