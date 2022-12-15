@@ -1,5 +1,5 @@
 # Django
-Django==4.1.4
+Django==3.2.16
 
 # Rest Framewrok
 djangorestframework==3.14.0
