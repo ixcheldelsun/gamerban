@@ -17,8 +17,12 @@ class PlayerField(serializers.RelatedField):
     
     queryset = Player.objects.all()
     
+    
     def to_internal_value(self, data):
-        return Player.get("email", data)
+        player = Player.get("email", data)
+        if not player:
+            raise serializers.ValidationError("Player does not exist.")
+        return player
     
     def to_representation(self, value):
         return value.email

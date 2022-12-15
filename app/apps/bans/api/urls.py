@@ -1,6 +1,7 @@
 from apps.bans.api.views import BanList, BanCheck
 from django.urls import path
 
+app_name = 'bans_api'
 
 urlpatterns = [
     path('blacklist', BanList.as_view(), name='bans-list'), # list and create bans for a player.

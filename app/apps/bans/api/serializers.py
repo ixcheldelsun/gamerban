@@ -8,7 +8,7 @@ from apps.bans.api.services import BanService
 class BanSerializer(serializers.ModelSerializer):
     """Ban Serializer"""
     
-    reason = serializers.CharField()
+    reason = serializers.ChoiceField(Ban.Reason.choices, required=True)
     game_id = serializers.PrimaryKeyRelatedField(
         queryset=Game.objects.all()
     ) 

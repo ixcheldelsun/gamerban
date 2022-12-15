@@ -3,7 +3,7 @@ from apps.bans.models import Ban
 from rest_framework import generics
 
 
-class BanList(generics.CreateAPIView):
+class BanList(generics.ListCreateAPIView):
     """List and create bans for a player."""
     queryset = Ban.objects.all()
     serializer_class = BanSerializer
