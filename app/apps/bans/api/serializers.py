@@ -7,6 +7,7 @@ from rest_framework import serializers
 
 class BanSerializer(serializers.ModelSerializer):
     
+    reason = serializers.CharField()
     game_id = serializers.PrimaryKeyRelatedField(
         queryset=Game.objects.all()
     ) 
@@ -14,6 +15,7 @@ class BanSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Ban
+        required_fields = ('reason', 'game_id', 'email')
         fields = ('reason', 'date', 'game_id', 'email')
         read_only_fields = ('date', )
     
@@ -21,6 +23,12 @@ class BanSerializer(serializers.ModelSerializer):
         data = super(BanSerializer, self).to_internal_value(data)
         data['game'] = data.pop('game_id')
         return data
+    
+    def to_representation(self, instance):
+        data = super(BanSerializer, self).to_representation(instance)
+        data['reason'] = instance.get_reason_display()
+        return data
+
     
    
         
