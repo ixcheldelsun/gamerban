@@ -6,4 +6,10 @@ services:
     command: gunicorn gamerban.wsgi:application --bind 0.0.0.0:8000 --workers 3 
     environment:
       - DEBUG=0
+    restart: always
+    volumes:
+      - ./app/:/usr/src/app/
+    env_file: ./app/.env
+    ports:
+      - 8009:8000
     
