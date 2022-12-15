@@ -6,6 +6,18 @@ from rest_framework import serializers
 class PlayerSerializer(serializers.ModelSerializer):
     """Player Serializer"""
     
+    def validate_username(self, username):
+        """Validate username"""
+        if Player.objects.filter(username=username).exists():
+            raise serializers.ValidationError('Username already exists')
+        return username
+    
+    def validate_email(self, email):
+        """Validate email"""
+        if Player.objects.filter(email=email).exists():
+            raise serializers.ValidationError('Email already exists')
+        return email
+    
     class Meta:
         model = Player
         fields = ('username', 'first_name', 'last_name', 'email', 'is_active', 'date_joined')

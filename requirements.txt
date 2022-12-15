@@ -15,3 +15,6 @@ factory-boy==3.2.1
 # deploy 
 gunicorn==20.1.0
 
+# Environment
+python-dotenv==0.21.0
+
