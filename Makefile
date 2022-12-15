@@ -7,3 +7,7 @@ migrate:
 run_api: 
 	echo "Running API..."
 	docker-compose run --rm --service-ports gamerban python manage.py runserver 0.0.0.0:8000
+
+pytest: 
+	echo "Running tests..."
+	docker-compose run --rm gamerban pytest
