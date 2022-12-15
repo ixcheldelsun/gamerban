@@ -1,8 +1,8 @@
 from apps.bans.models import Ban
 from apps.games.models import Game
-from apps.players.models import Player
-from apps.players.api.serializers import PlayerSerializer, PlayerField
+from apps.players.api.serializers import PlayerField
 from rest_framework import serializers
+from apps.bans.api.services import BanService
 
 
 class BanSerializer(serializers.ModelSerializer):
@@ -27,6 +27,31 @@ class BanSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super(BanSerializer, self).to_representation(instance)
         data['reason'] = instance.get_reason_display()
+        return data
+    
+
+class BanCheckSerializer(serializers.Serializer):
+    
+    def __init__(self, *args, **kwargs):
+        super(BanCheckSerializer, self).__init__(*args, **kwargs)
+        self.service = BanService
+    
+    email = PlayerField(source='player')
+    most_common_reason = serializers.CharField(read_only=True)
+    times_reported = serializers.IntegerField(read_only=True)
+    games_reported = serializers.IntegerField(read_only=True)
+    
+    class Meta:
+        model = Ban
+        required_fields = ('email', )
+        fields = ('email', 'most_common_reason', 'times_reported', 'games_reported')
+    
+    def create(self, validated_data):
+        return validated_data['player']
+    
+    def to_representation(self, instance):
+        data = self.service.get_ban_data(instance.id)
+        data['email'] = instance.email
         return data
 
     
