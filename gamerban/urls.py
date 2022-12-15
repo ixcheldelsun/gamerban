@@ -25,6 +25,7 @@ schema_view = get_schema_view(
   openapi.Info(
       title="Gamerban API",
       default_version="v1",
+      description="API to ban players from games. Made by @ixcheldelsun with Django and Django Rest Framework.",
   ),
   public=True,
   permission_classes=(permissions.AllowAny,),
