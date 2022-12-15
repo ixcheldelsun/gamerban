@@ -6,7 +6,6 @@ from django.utils.translation import gettext_lazy as _
 class Player(AbstractUser):
     first_name = models.CharField(_('nombre'), max_length=150)
     last_name = models.CharField(_('apellido'), max_length=150)
-    banned = models.BooleanField(_('baneado'), default=False)
     
     def __str__(self) -> str:
         return f'{self.username} - {self.first_name} {self.last_name}'
