@@ -5,10 +5,11 @@ services:
     restart: always
     build: ./
     volumes:
-      - ./app/:/usr/src/app/
+      - ./:/usr/src/app/
     env_file: .env
     environment:
       - DEBUG=1
     ports:
       - 8009:8000
+    command: gunicorn gamerban.wsgi:application --bind 0.0.0.0:8000
     

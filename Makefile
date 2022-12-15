@@ -1,6 +1,6 @@
 migrate: 
 	echo "Making migrations..."
-	do'cker-compose run --rm gamerban python manage.py makemigrations
+	docker-compose run --rm gamerban python manage.py makemigrations
 	echo "Migrating..."
 	docker-compose run --rm gamerban python manage.py migrate
 
