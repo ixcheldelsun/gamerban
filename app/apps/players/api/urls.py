@@ -1,7 +1,8 @@
-from apps.players.api.views import PlayerList
+from apps.players.api.views import PlayerList, BannedPlayersList
 from django.urls import path
 
 
 urlpatterns = [
     path('players', PlayerList.as_view(), name='player-list'),
+    path('players/banned', BannedPlayersList.as_view(), name='banned-players-list'),
 ]
