@@ -31,7 +31,7 @@ class PlayerField(serializers.RelatedField):
     
     
     def to_internal_value(self, data):
-        player = Player.get("email", data)
+        player = Player.objects.filter(email=data).first()
         if not player:
             raise serializers.ValidationError("Player does not exist.")
         return player

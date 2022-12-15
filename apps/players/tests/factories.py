@@ -11,4 +11,5 @@ class PlayerFactory(DjangoModelFactory):
     
     class Meta:
         model = "players.Player"
+        django_get_or_create = ['username', 'email']
 
