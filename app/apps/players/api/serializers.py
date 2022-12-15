@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 
 class PlayerSerializer(serializers.ModelSerializer):
+    """Player Serializer"""
     
     class Meta:
         model = Player
@@ -12,11 +13,12 @@ class PlayerSerializer(serializers.ModelSerializer):
         
 
 class PlayerField(serializers.RelatedField):
+    """Custom Related Field for the Player model."""
     
     queryset = Player.objects.all()
     
     def to_internal_value(self, data):
-        return Player.objects.get(email=data)
+        return Player.get("email", data)
     
     def to_representation(self, value):
         return value.email
