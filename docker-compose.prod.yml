@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  gamerban: &django
+    build: docker/prod/
+    command: gunicorn gamerban.wsgi:application --bind 0.0.0.0:8000 --workers 3 
+    environment:
+      - DEBUG=0
+    

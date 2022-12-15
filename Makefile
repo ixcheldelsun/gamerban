@@ -1,6 +1,6 @@
 migrate: 
 	echo "Making migrations..."
-	docker-compose run --rm gamerban python manage.py makemigrations
+	do'cker-compose run --rm gamerban python manage.py makemigrations
 	echo "Migrating..."
 	docker-compose run --rm gamerban python manage.py migrate
 
@@ -11,3 +11,6 @@ run_api:
 pytest: 
 	echo "Running tests..."
 	docker-compose run --rm gamerban pytest
+
+deploy:
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build
