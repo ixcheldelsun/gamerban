@@ -1,6 +1,6 @@
 from apps.bans.models import Ban
 from django.db.models import Count
-
+import datetime
 
 class BanService(object):
     """Service for Ban model"""
@@ -13,7 +13,7 @@ class BanService(object):
     
     def get_number_of_games(player_id:int):
         """Get number of games where player has been reported."""
-        return Ban.objects.filter(player__id=player_id).values('game').distinct().count()
+        return Ban.objects.filter(player__id=player_id, date__gt=datetime.datetime.today()-datetime.timedelta(days=90)).values('game').distinct().count()
     
     
     def get_most_common_reason(player_id:int):
