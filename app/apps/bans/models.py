@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-# Create your models here.
+
 class Ban(models.Model):
+    """Ban model for reports done to a player in a game for inappropriate behaviour."""
     
     class Reason(models.TextChoices):
         LANGUAGE = 'LANGUAGE', _('Foul language')

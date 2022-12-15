@@ -4,10 +4,12 @@ from rest_framework import generics
 
 
 class BanList(generics.CreateAPIView):
+    """List and create bans for a player."""
     queryset = Ban.objects.all()
     serializer_class = BanSerializer
     
     
 class BanCheck(generics.CreateAPIView):
+    """Check a player's ban status."""
     queryset = Ban.objects.all()
     serializer_class = BanCheckSerializer

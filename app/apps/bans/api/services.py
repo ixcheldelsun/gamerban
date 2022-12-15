@@ -3,7 +3,7 @@ from django.db.models import Count
 import datetime
 
 class BanService(object):
-    """Service for Ban model"""
+    """Service for Ban model for custom stats."""
     
     
     def get_number_of_reports(player_id:int):
@@ -30,3 +30,4 @@ class BanService(object):
             'times_reported': self.get_number_of_reports(player_id),
             'games_reported': self.get_number_of_games(player_id)
         }
+        
